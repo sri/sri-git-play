@@ -1,0 +1,9 @@
+#! /usr/bin/env ruby
+
+puts ' '*19 + "# ~/.bash_aliases"
+
+IO.readlines('/Users/sri/.bashrc').
+  collect { |x| x =~ /^alias\s*([^=]*)=(.*)/ && [$1, $2] }.
+  compact.
+  sort_by { |x, y| [-x.length, x]  }.
+  each { |x, y| printf("%20s => %s\n", x, y) }
