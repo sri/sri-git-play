@@ -2,7 +2,7 @@
 
 puts ' '*19 + "# ~/.bash_aliases"
 
-IO.readlines('/Users/sri/.bashrc').
+IO.readlines(File.expand_path('~/.bashrc')).
   collect { |x| x =~ /^alias\s*([^=]*)=(.*)/ && [$1, $2] }.
   compact.
   sort_by { |x, y| [-x.length, x]  }.

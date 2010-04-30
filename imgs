@@ -1,0 +1,17 @@
+#! /usr/bin/env ruby19
+require 'open-uri'
+
+def http(x)
+  x =~ /^http/ ? x : "http://#{x}"
+end
+
+begin
+ puts open(http(ARGV[0] || `pbpaste`)).
+  read.
+  scan(/([^\"'\s\(]*?[.](jpe?g|png|gif|ico))/i).
+  map { |x| x[0] }.
+  uniq.
+  join("\n")
+rescue
+  puts "an error occurred: #{url}", $!
+end
